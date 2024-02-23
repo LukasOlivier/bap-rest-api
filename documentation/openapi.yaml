@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Student Management API
-  version: 1.0.0
+  version: 1.1.0
 
 paths:
   /students:
@@ -60,6 +60,48 @@ paths:
         "204":
           description: Successfully deleted
 
+  /students/{studentId}/enrollments:
+    post:
+      summary: Enroll in a course
+      description: Enroll a student in a course.
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          description: ID of the student to enroll
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Course"
+      responses:
+        "201":
+          description: Successfully enrolled
+
+  /students/{studentId}/enrollments/{courseId}:
+    delete:
+      summary: Withdraw from a course
+      description: Withdraw a student from a course.
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          description: ID of the student to withdraw
+          schema:
+            type: string
+        - name: courseId
+          in: path
+          required: true
+          description: ID of the course to withdraw from
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Successfully withdrawn
+
 components:
   schemas:
     Student:
@@ -69,10 +111,10 @@ components:
           type: string
           format: uuid
           description: Unique identification of the student
-        firstName:
+        firstname:
           type: string
           description: First name of the student
-        lastName:
+        lastname:
           type: string
           description: Last name of the student
         email:
