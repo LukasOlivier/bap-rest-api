@@ -2,6 +2,7 @@ openapi: 3.0.0
 info:
   title: Student Management API
   version: 1.1.0
+  description: API for managing students, courses, and classes in a school.
 
 paths:
   /students:
@@ -101,6 +102,36 @@ paths:
       responses:
         "204":
           description: Successfully withdrawn
+
+  /students/{studentId}/courses:
+    get:
+      summary: Retrieve the list of courses
+      description: View the list of courses that a student is enrolled in.
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          description: ID of the student to view courses
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successfully retrieved
+
+  /courses/{courseId}/classes:
+    get:
+      summary: Retrieve the list of classes
+      description: View the list of classes for a course.
+      parameters:
+        - name: courseId
+          in: path
+          required: true
+          description: ID of the course to view classes
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successfully retrieved
 
 components:
   schemas:
