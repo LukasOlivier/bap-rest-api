@@ -1,0 +1,109 @@
+openapi: 3.0.0
+info:
+  title: Student Management API
+  version: 1.0.0
+
+paths:
+  /students:
+    post:
+      summary: Add new students
+      description: Add new students with basic information.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Student"
+      responses:
+        "201":
+          description: Successfully created
+
+    get:
+      summary: Retrieve the list of students
+      description: View the list of students or search based on criteria such as class or age.
+      responses:
+        "200":
+          description: Successfully retrieved
+
+  /students/{studentId}:
+    put:
+      summary: Update student information
+      description: Update student information when changes occur.
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          description: ID of the student to be updated
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Student"
+      responses:
+        "200":
+          description: Successfully updated
+
+    delete:
+      summary: Delete students
+      description: Delete students who have left the school.
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          description: ID of the student to be deleted
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Successfully deleted
+
+components:
+  schemas:
+    Student:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identification of the student
+        firstName:
+          type: string
+          description: First name of the student
+        lastName:
+          type: string
+          description: Last name of the student
+        email:
+          type: string
+          format: email
+          description: Email address of the student
+        course:
+          $ref: "#/components/schemas/Course"
+        classes:
+          type: array
+          items:
+            $ref: "#/components/schemas/Class"
+
+    Course:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identification of the course
+        name:
+          type: string
+          description: Name of the course
+
+    Class:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identification of the class
+        name:
+          type: string
+          description: Name of the class
