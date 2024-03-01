@@ -20,7 +20,6 @@ export const getStudent = async (id: number): Promise<Student> => {
 };
 
 export const createStudent = async (student: Student): Promise<void> => {
-    console.log(student);
     const queryText = 'INSERT INTO Students (name, age, email, phone) VALUES (?, ?, ?, ?)';
     await query(queryText, [student.name, student.age, student.email, student.phone]);
 };

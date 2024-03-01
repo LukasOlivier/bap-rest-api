@@ -15,6 +15,7 @@ const router = Router();
 
 router.get('/', getCoursesController);
 router.get('/:id', getCourseController);
+//router.post('/', verifyJWT, validateCourse, createCourseController);
 router.post('/', verifyJWT, validateCourse, createCourseController);
 router.delete('/:id', verifyJWT, deleteCourseController);
 router.get('/:id/students', getCourseStudentsController);

@@ -10,11 +10,10 @@ export const verifyJWT = (req: Request, res: Response, next: NextFunction) => {
 
     const token = authHeader.split(' ')[1];
 
-    jwt.verify(token, secretKey, (err, user) => {
+    jwt.verify(token, secretKey, (err) => {
         if (err) {
             return res.status(403).json({ message: 'Forbidden' });
         }
-        req.body.userId = (user as any).userId;
         next();
     });
 };
