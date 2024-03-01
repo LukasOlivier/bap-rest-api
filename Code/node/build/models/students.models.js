@@ -70,7 +70,6 @@ var createStudent = function (student) { return __awaiter(void 0, void 0, void 0
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                console.log(student);
                 queryText = 'INSERT INTO Students (name, age, email, phone) VALUES (?, ?, ?, ?)';
                 return [4 /*yield*/, (0, dbConnection_1.default)(queryText, [student.name, student.age, student.email, student.phone])];
             case 1:

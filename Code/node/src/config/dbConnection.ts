@@ -1,10 +1,14 @@
 // db.js
 import { SqlClient } from 'msnodesqlv8/types';
+import * as dotenv from 'dotenv';
 
 const sql: SqlClient = require('msnodesqlv8');
 
-const connectionString =
-    "Driver={ODBC Driver 18 for SQL Server};Server=INTEGREAT-OEW3C;Database=BAP;Trusted_Connection=yes;TrustServerCertificate=yes";
+dotenv.config();
+
+const connectionString = process.env.DB_CONNECTION_STRING;
+
+console.log(connectionString);
 
 async function query<T>(query: string, params: any[] = []): Promise<T[]> {
     return new Promise((resolve, reject) => {

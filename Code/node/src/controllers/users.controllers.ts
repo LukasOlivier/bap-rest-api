@@ -42,6 +42,7 @@ export const deleteUserController = async (req: Request, res: Response): Promise
 export const loginController = async (req: Request, res: Response): Promise<void> => {
     try {
         const { email, password } = req.body;
+
         const user: User | null = await authenticateUser(email, password);
         if (user) {
             const token = generateToken(user);

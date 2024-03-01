@@ -92,7 +92,6 @@ var createCourseController = function (req, res) { return __awaiter(void 0, void
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 course = req.body;
-                console.log(course);
                 return [4 /*yield*/, (0, courses_models_1.createCourse)(course)];
             case 1:
                 _a.sent();
