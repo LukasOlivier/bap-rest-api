@@ -39,54 +39,86 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteStudentController = exports.createStudentController = exports.getStudentController = exports.getStudentsController = void 0;
 var students_models_1 = require("../models/students.models");
 var getStudentsController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var students;
+    var students, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, students_models_1.getStudents)()];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, (0, students_models_1.getStudents)()];
             case 1:
                 students = _a.sent();
                 res.status(200).json({ students: students });
-                return [2 /*return*/];
+                return [3 /*break*/, 3];
+            case 2:
+                err_1 = _a.sent();
+                res.status(500).json({ message: 'Internal server error' });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };
 exports.getStudentsController = getStudentsController;
 var getStudentController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var student;
+    var student, err_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, students_models_1.getStudent)(parseInt(req.params.id))];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, (0, students_models_1.getStudent)(parseInt(req.params.id))];
             case 1:
                 student = _a.sent();
+                if (!student) {
+                    res.status(404).json({ message: 'Student not found' });
+                    return [2 /*return*/];
+                }
                 res.status(200).json({ student: student });
-                return [2 /*return*/];
+                return [3 /*break*/, 3];
+            case 2:
+                err_2 = _a.sent();
+                res.status(500).json({ message: 'Internal server error' });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };
 exports.getStudentController = getStudentController;
 var createStudentController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var student;
+    var student, err_3;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
+                _a.trys.push([0, 2, , 3]);
                 student = req.body;
                 return [4 /*yield*/, (0, students_models_1.createStudent)(student)];
             case 1:
                 _a.sent();
                 res.status(201).json({ message: 'Student created' });
-                return [2 /*return*/];
+                return [3 /*break*/, 3];
+            case 2:
+                err_3 = _a.sent();
+                res.status(500).json({ message: 'Internal server error' });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };
 exports.createStudentController = createStudentController;
 var deleteStudentController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var err_4;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, students_models_1.deleteStudent)(parseInt(req.params.id))];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, (0, students_models_1.deleteStudent)(parseInt(req.params.id))];
             case 1:
                 _a.sent();
                 res.status(200).json({ message: 'Student deleted' });
-                return [2 /*return*/];
+                return [3 /*break*/, 3];
+            case 2:
+                err_4 = _a.sent();
+                res.status(500).json({ message: 'Internal server error' });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };

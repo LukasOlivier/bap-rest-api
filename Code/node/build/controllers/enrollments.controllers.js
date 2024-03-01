@@ -39,32 +39,52 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.unenrollStudentController = exports.enrollStudentController = void 0;
 var enrollments_models_1 = require("../models/enrollments.models");
 var enrollStudentController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var studentId, courseId;
+    var studentId, courseId, isEnrolled, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
+                _a.trys.push([0, 3, , 4]);
                 studentId = parseInt(req.body.studentId);
                 courseId = parseInt(req.body.courseId);
-                return [4 /*yield*/, (0, enrollments_models_1.enrollStudent)(studentId, courseId)];
+                return [4 /*yield*/, (0, enrollments_models_1.checkStudentEnrollment)(studentId)];
             case 1:
+                isEnrolled = _a.sent();
+                if (isEnrolled) {
+                    res.status(400).json({ message: 'Student already enrolled in another course. Unenroll first.' });
+                    return [2 /*return*/];
+                }
+                return [4 /*yield*/, (0, enrollments_models_1.enrollStudent)(studentId, courseId)];
+            case 2:
                 _a.sent();
                 res.status(200).json({ message: 'Student enrolled' });
-                return [2 /*return*/];
+                return [3 /*break*/, 4];
+            case 3:
+                error_1 = _a.sent();
+                console.error(error_1);
+                res.status(500).json({ message: 'Error enrolling student' });
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); };
 exports.enrollStudentController = enrollStudentController;
 var unenrollStudentController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var studentId;
+    var studentId, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
+                _a.trys.push([0, 2, , 3]);
                 studentId = parseInt(req.body.studentId);
                 return [4 /*yield*/, (0, enrollments_models_1.unenrollStudent)(studentId)];
             case 1:
                 _a.sent();
                 res.status(200).json({ message: 'Student unenrolled', studentId: studentId });
-                return [2 /*return*/];
+                return [3 /*break*/, 3];
+            case 2:
+                err_1 = _a.sent();
+                res.status(500).json({ message: 'Internal server error' });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };

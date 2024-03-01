@@ -39,67 +39,114 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCourseStudentsController = exports.deleteCourseController = exports.createCourseController = exports.getCourseController = exports.getCoursesController = void 0;
 var courses_models_1 = require("../models/courses.models");
 var getCoursesController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var courses;
+    var courses, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, courses_models_1.getCourses)()];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, (0, courses_models_1.getCourses)()];
             case 1:
                 courses = _a.sent();
                 res.status(200).json({ courses: courses });
-                return [2 /*return*/];
+                return [3 /*break*/, 3];
+            case 2:
+                error_1 = _a.sent();
+                console.error(error_1);
+                res.status(500).json({ message: 'Error retrieving courses' });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };
 exports.getCoursesController = getCoursesController;
 var getCourseController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var course;
+    var courseId, course, error_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, courses_models_1.getCourse)(parseInt(req.params.id))];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                courseId = parseInt(req.params.id);
+                return [4 /*yield*/, (0, courses_models_1.getCourse)(courseId)];
             case 1:
                 course = _a.sent();
+                if (!course) {
+                    res.status(404).json({ message: 'Course not found' });
+                    return [2 /*return*/];
+                }
                 res.status(200).json({ course: course });
-                return [2 /*return*/];
+                return [3 /*break*/, 3];
+            case 2:
+                error_2 = _a.sent();
+                console.error(error_2);
+                res.status(500).json({ message: 'Error retrieving course' });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };
 exports.getCourseController = getCourseController;
 var createCourseController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var course;
+    var course, error_3;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
+                _a.trys.push([0, 2, , 3]);
                 course = req.body;
                 return [4 /*yield*/, (0, courses_models_1.createCourse)(course)];
             case 1:
                 _a.sent();
                 res.status(201).json({ message: 'Course created' });
-                return [2 /*return*/];
+                return [3 /*break*/, 3];
+            case 2:
+                error_3 = _a.sent();
+                console.error(error_3);
+                res.status(400).json({ message: 'Error creating course' });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };
 exports.createCourseController = createCourseController;
 var deleteCourseController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var courseId, error_4;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, courses_models_1.deleteCourse)(parseInt(req.params.id))];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                courseId = parseInt(req.params.id);
+                return [4 /*yield*/, (0, courses_models_1.deleteCourse)(courseId)];
             case 1:
                 _a.sent();
                 res.status(200).json({ message: 'Course deleted' });
-                return [2 /*return*/];
+                return [3 /*break*/, 3];
+            case 2:
+                error_4 = _a.sent();
+                console.error(error_4);
+                res.status(500).json({ message: 'Error deleting course' });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };
 exports.deleteCourseController = deleteCourseController;
 var getCourseStudentsController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var students;
+    var courseId, students, error_5;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, courses_models_1.getCourseStudents)(parseInt(req.params.id))];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                courseId = parseInt(req.params.id);
+                return [4 /*yield*/, (0, courses_models_1.getCourseStudents)(courseId)];
             case 1:
                 students = _a.sent();
                 res.status(200).json({ students: students });
-                return [2 /*return*/];
+                return [3 /*break*/, 3];
+            case 2:
+                error_5 = _a.sent();
+                console.error(error_5);
+                res.status(500).json({ message: 'Error retrieving course students' });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };

@@ -49,7 +49,6 @@ function query(query, params) {
                         }
                         else {
                             resolve(rows);
-                            return rows;
                         }
                     });
                 })];

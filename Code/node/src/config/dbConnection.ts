@@ -13,7 +13,6 @@ async function query<T>(query: string, params: any[] = []): Promise<T[]> {
                 reject(err);
             } else {
                 resolve(rows);
-                return rows;
             }
         });
     });

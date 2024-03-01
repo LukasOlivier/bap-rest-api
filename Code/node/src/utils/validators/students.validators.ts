@@ -7,20 +7,20 @@ import Joi, {
     ValidationResult
 } from 'joi';
 
-export const userSchema = Joi.object({
-    id: Joi.number().integer().required(),
+export const studentSchema = Joi.object({
     name: Joi.string().required(),
+    age: Joi.number().integer().required(),
     email: Joi.string().email().required(),
-    password: Joi.string().required().min(8),
+    phone: Joi.string().required(),
 });
 
-export const validateUser = (
+export const validateStudent = (
     req: Request,
     res: Response,
     next: NextFunction
 ) => {
     const result: ValidationResult =
-        userSchema.validate(
+        studentSchema.validate(
             req.body,
             { abortEarly: false }
         );

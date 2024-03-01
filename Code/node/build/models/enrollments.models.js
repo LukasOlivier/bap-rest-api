@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.unenrollStudent = exports.enrollStudent = void 0;
+exports.checkStudentEnrollment = exports.unenrollStudent = exports.enrollStudent = void 0;
 var dbConnection_1 = __importDefault(require("../config/dbConnection"));
 var enrollStudent = function (studentId, courseId) { return __awaiter(void 0, void 0, void 0, function () {
     var queryText;
@@ -69,3 +69,23 @@ var unenrollStudent = function (studentId) { return __awaiter(void 0, void 0, vo
     });
 }); };
 exports.unenrollStudent = unenrollStudent;
+var checkStudentEnrollment = function (studentId) { return __awaiter(void 0, void 0, void 0, function () {
+    var queryText, result;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                queryText = 'SELECT courseId FROM Students WHERE id = ?';
+                return [4 /*yield*/, (0, dbConnection_1.default)(queryText, [studentId])];
+            case 1:
+                result = _a.sent();
+                console.log(result);
+                // Check if result is empty before accessing courseId
+                if (result.length === 0) {
+                    return [2 /*return*/, false]; // Student not found, so not enrolled
+                }
+                // Access courseId only if result is not empty
+                return [2 /*return*/, result[0].courseId !== null];
+        }
+    });
+}); };
+exports.checkStudentEnrollment = checkStudentEnrollment;
