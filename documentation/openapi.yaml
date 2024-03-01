@@ -9,6 +9,57 @@ servers:
     description: Express server
 
 paths:
+  /users/register:
+    post:
+      summary: Register a new user
+      description: Register a new user with basic information.
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "201":
+          description: Successfully registered
+
+  /users/login:
+    post:
+      summary: User login
+      description: Authenticate a user and obtain a JWT token.
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: "john.doe@example.com"
+                  description: Email address of the user
+                password:
+                  type: string
+                  example: "password123"
+                  description: User's password
+      responses:
+        "200":
+          description: Successfully logged in
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: "your_jwt_token_here"
+                    description: JWT token for authentication
+
   /students:
     post:
       summary: Add new students
@@ -24,7 +75,8 @@ paths:
       responses:
         "201":
           description: Successfully created
-
+      security:
+        - BearerAuth: []
     get:
       summary: Retrieve the list of students
       description: View the list of students or search based on criteria such as class or age.
@@ -74,6 +126,8 @@ paths:
           description: Successfully deleted
         "404":
           description: Student not found
+      security:
+        - BearerAuth: []
 
   /courses:
     post:
@@ -90,6 +144,8 @@ paths:
       responses:
         "201":
           description: Successfully created
+      security:
+        - BearerAuth: []
 
     get:
       summary: Retrieve the list of courses
@@ -140,6 +196,29 @@ paths:
           description: Successfully deleted
         "404":
           description: Course not found
+      security:
+        - BearerAuth: []
+
+  /courses/{id}/students:
+    get:
+      summary: Retrieve the list of students enrolled in a course
+      description: View the list of students enrolled in a course.
+      tags:
+        - Course
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identification of the course
+          schema:
+            type: integer
+            format: int64
+            example: 1
+      responses:
+        "200":
+          description: Successfully retrieved
+        "404":
+          description: Course not found
 
   /enroll:
     post:
@@ -169,6 +248,8 @@ paths:
           description: Successfully enrolled
         "404":
           description: Student or course not found
+      security:
+        - BearerAuth: []
 
     delete:
       summary: Withdraw a student from a course
@@ -192,17 +273,14 @@ paths:
           description: Successfully unenrolled
         "404":
           description: Student or course not found
+      security:
+        - BearerAuth: []
 
 components:
   schemas:
     Student:
       type: object
       properties:
-        id:
-          type: integer
-          example: 1
-          format: int64
-          description: Unique identification of the student
         name:
           type: string
           example: John Doe
@@ -230,11 +308,6 @@ components:
     Course:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-          example: 1
-          description: Unique identification of the course
         name:
           type: string
           example: Mathematics
@@ -248,3 +321,21 @@ components:
           format: int32
           example: 3
           description: Number of credits for the course
+
+    User:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: "john.doe@example.com"
+          description: Email address of the user
+        password:
+          type: string
+          example: "password123"
+          description: User's password (hashed in a real-world scenario)
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

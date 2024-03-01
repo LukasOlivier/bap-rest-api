@@ -8,9 +8,7 @@ var courses_routes_1 = __importDefault(require("./courses.routes"));
 var students_routes_1 = __importDefault(require("./students.routes"));
 var users_routes_1 = __importDefault(require("./users.routes"));
 var enrollments_routes_1 = __importDefault(require("./enrollments.routes"));
-// Create a new Router instance
 var router = (0, express_1.Router)();
-// Mount the routers
 router.use('/courses', courses_routes_1.default);
 router.use('/enroll', enrollments_routes_1.default);
 router.use('/students', students_routes_1.default);

@@ -1,49 +1,48 @@
+import query from "../config/dbConnection";
+import jwt from "jsonwebtoken";
+import { secretKey } from "../config/jwt";
+
 export interface User {
     id: number;
-    name: string;
     email: string;
     password: string;
 }
 
-const users: Array<User> = [
-    {
-        id: 1,
-        name: 'John Doe',
-        email: 'john.doe@test.com',
-        password: '123456',
-    },
-    {
-        id: 2,
-        name: 'Jane Doe',
-        email: 'jane.doe@test.com',
-        password: 'secret',
-    },
-    {
-        id: 3,
-        name: 'Jack Doe',
-        email: 'jack.doe@test.com',
-        password: 'password',
-    },
-];
+export const getUser = async (email: string): Promise<User> => {
+    const queryText = 'SELECT * FROM Users WHERE email = ?';
+    return (await query<User>(queryText, [email]))[0];
+}
 
-export const getUsers = (): Array<User> => {
-    return users;
-};
+export const getUsers = async (): Promise<User[]> => {
+    const queryText = 'SELECT * FROM Users';
+    return await query<User>(queryText, []);
+}
 
-export const getUserById = (id: number): User | undefined => {
-    return users.find(user => user.id === id);
-};
+export const createUser = async (user: User): Promise<void> => {
+    const queryText = 'INSERT INTO Users (email, password) VALUES (?, ?)';
+    await query(queryText, [user.email, user.password]);
+}
 
-export const createUser = (user: User): void => {
-    users.push(user);
-};
+export const deleteUser = async (id: number): Promise<void> => {
+    const queryText = 'DELETE FROM Users WHERE id = ?';
+    await query(queryText, [id]);
+}
 
-export const updateUser = (user: User): void => {
-    const index = users.findIndex(u => u.id === user.id);
-    users[index] = user;
-};
+export const authenticateUser = async (email: string, password: string): Promise<User | null> => {
+    const user = await getUser(email);
+    if (isPasswordValid(user.password, password)) {
+        return user;
+    }
+    return null;
+}
 
-export const deleteUser = (id: number): void => {
-    const index = users.findIndex(u => u.id === id);
-    users.splice(index, 1);
-};
+export const generateToken = (user: User): string => {
+    const payload = {
+        userId: user.id,
+    };
+    return jwt.sign(payload, secretKey, { expiresIn: '1m' });
+}
+
+export const isPasswordValid = (password: string, inputPassword: string): boolean => {
+    return password === inputPassword;
+}

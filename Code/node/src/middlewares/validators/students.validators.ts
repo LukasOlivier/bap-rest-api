@@ -12,6 +12,7 @@ export const studentSchema = Joi.object({
     age: Joi.number().integer().required(),
     email: Joi.string().email().required(),
     phone: Joi.string().required(),
+    courseId: Joi.number().integer().required(),
 });
 
 export const validateStudent = (

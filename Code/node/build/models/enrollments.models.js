@@ -78,12 +78,9 @@ var checkStudentEnrollment = function (studentId) { return __awaiter(void 0, voi
                 return [4 /*yield*/, (0, dbConnection_1.default)(queryText, [studentId])];
             case 1:
                 result = _a.sent();
-                console.log(result);
-                // Check if result is empty before accessing courseId
                 if (result.length === 0) {
-                    return [2 /*return*/, false]; // Student not found, so not enrolled
+                    return [2 /*return*/, false];
                 }
-                // Access courseId only if result is not empty
                 return [2 /*return*/, result[0].courseId !== null];
         }
     });

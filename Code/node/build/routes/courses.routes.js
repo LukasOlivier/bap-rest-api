@@ -2,11 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var courses_controllers_1 = require("../controllers/courses.controllers");
-var courses_validators_1 = require("../utils/validators/courses.validators");
+var courses_validators_1 = require("../middlewares/validators/courses.validators");
+var jwt_1 = require("../middlewares/authentication/jwt");
 var router = (0, express_1.Router)();
 router.get('/', courses_controllers_1.getCoursesController);
 router.get('/:id', courses_controllers_1.getCourseController);
-router.post('/', courses_validators_1.validateCourse, courses_controllers_1.createCourseController);
-router.delete('/:id', courses_controllers_1.deleteCourseController);
+router.post('/', jwt_1.verifyJWT, courses_validators_1.validateCourse, courses_controllers_1.createCourseController);
+router.delete('/:id', jwt_1.verifyJWT, courses_controllers_1.deleteCourseController);
 router.get('/:id/students', courses_controllers_1.getCourseStudentsController);
 exports.default = router;

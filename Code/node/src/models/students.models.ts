@@ -6,6 +6,7 @@ export interface Student {
     age: number;
     email: string;
     phone: string;
+    courseId: number;
 }
 
 export const getStudents = async (): Promise<Student[]> => {

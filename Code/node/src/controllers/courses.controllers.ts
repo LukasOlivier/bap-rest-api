@@ -35,6 +35,7 @@ export const getCourseController = async (req: Request, res: Response): Promise<
 export const createCourseController = async (req: Request, res: Response): Promise<void> => {
     try {
         const course = req.body;
+        console.log(course);
         await createCourse(course);
         res.status(201).json({ message: 'Course created' });
     } catch (error) {
