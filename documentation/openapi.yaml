@@ -4,11 +4,17 @@ info:
   version: 1.1.0
   description: API for managing students, courses, and classes in a school.
 
+servers:
+  - url: http://localhost:3000
+    description: Express server
+
 paths:
   /students:
     post:
       summary: Add new students
       description: Add new students with basic information.
+      tags:
+        - Student
       requestBody:
         required: true
         content:
@@ -22,56 +28,59 @@ paths:
     get:
       summary: Retrieve the list of students
       description: View the list of students or search based on criteria such as class or age.
+      tags:
+        - Student
       responses:
         "200":
           description: Successfully retrieved
 
-  /students/{studentId}:
-    put:
-      summary: Update student information
-      description: Update student information when changes occur.
+  /students/{id}:
+    get:
+      summary: Retrieve a student
+      description: View the details of a student.
+      tags:
+        - Student
       parameters:
-        - name: studentId
+        - name: id
           in: path
           required: true
-          description: ID of the student to be updated
+          description: Unique identification of the student
           schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Student"
+            type: integer
+            format: int64
+            example: 1
       responses:
         "200":
-          description: Successfully updated
+          description: Successfully retrieved
+        "404":
+          description: Student not found
 
     delete:
-      summary: Delete students
-      description: Delete students who have left the school.
+      summary: Delete a student
+      description: Delete a student from the system.
+      tags:
+        - Student
       parameters:
-        - name: studentId
+        - name: id
           in: path
           required: true
-          description: ID of the student to be deleted
+          description: Unique identification of the student
           schema:
-            type: string
+            type: integer
+            format: int64
+            example: 1
       responses:
         "204":
           description: Successfully deleted
+        "404":
+          description: Student not found
 
-  /students/{studentId}/enrollments:
+  /courses:
     post:
-      summary: Enroll in a course
-      description: Enroll a student in a course.
-      parameters:
-        - name: studentId
-          in: path
-          required: true
-          description: ID of the student to enroll
-          schema:
-            type: string
+      summary: Add new courses
+      description: Add new courses with basic information.
+      tags:
+        - Course
       requestBody:
         required: true
         content:
@@ -80,58 +89,109 @@ paths:
               $ref: "#/components/schemas/Course"
       responses:
         "201":
-          description: Successfully enrolled
+          description: Successfully created
 
-  /students/{studentId}/enrollments/{courseId}:
-    delete:
-      summary: Withdraw from a course
-      description: Withdraw a student from a course.
-      parameters:
-        - name: studentId
-          in: path
-          required: true
-          description: ID of the student to withdraw
-          schema:
-            type: string
-        - name: courseId
-          in: path
-          required: true
-          description: ID of the course to withdraw from
-          schema:
-            type: string
-      responses:
-        "204":
-          description: Successfully withdrawn
-
-  /students/{studentId}/courses:
     get:
       summary: Retrieve the list of courses
-      description: View the list of courses that a student is enrolled in.
-      parameters:
-        - name: studentId
-          in: path
-          required: true
-          description: ID of the student to view courses
-          schema:
-            type: string
+      description: View the list of courses or search based on criteria such as credits or name.
+      tags:
+        - Course
       responses:
         "200":
           description: Successfully retrieved
 
-  /courses/{courseId}/classes:
+  /courses/{id}:
     get:
-      summary: Retrieve the list of classes
-      description: View the list of classes for a course.
+      summary: Retrieve a course
+      description: View the details of a course.
+      tags:
+        - Course
       parameters:
-        - name: courseId
+        - name: id
           in: path
           required: true
-          description: ID of the course to view classes
+          description: Unique identification of the course
           schema:
-            type: string
+            type: integer
+            format: int64
+            example: 1
       responses:
         "200":
           description: Successfully retrieved
+        "404":
+          description: Course not found
+
+    delete:
+      summary: Delete a course
+      description: Delete a course from the system.
+      tags:
+        - Course
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identification of the course
+          schema:
+            type: integer
+            format: int64
+            example: 1
+      responses:
+        "204":
+          description: Successfully deleted
+        "404":
+          description: Course not found
+
+  /enroll:
+    post:
+      summary: Enroll a student in a course
+      description: Enroll a student in a course.
+      tags:
+        - Enrollment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                studentId:
+                  type: integer
+                  format: int64
+                  example: 1
+                  description: Unique identification of the student
+                courseId:
+                  type: integer
+                  format: int64
+                  example: 1
+                  description: Unique identification of the course
+      responses:
+        "201":
+          description: Successfully enrolled
+        "404":
+          description: Student or course not found
+
+    delete:
+      summary: Withdraw a student from a course
+      description: Withdraw a student from a course.
+      tags:
+        - Enrollment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                studentId:
+                  type: integer
+                  format: int64
+                  example: 1
+                  description: Unique identification of the student
+      responses:
+        "204":
+          description: Successfully unenrolled
+        "404":
+          description: Student or course not found
 
 components:
   schemas:
@@ -139,44 +199,52 @@ components:
       type: object
       properties:
         id:
-          type: string
-          format: uuid
+          type: integer
+          example: 1
+          format: int64
           description: Unique identification of the student
-        firstname:
+        name:
           type: string
-          description: First name of the student
-        lastname:
-          type: string
-          description: Last name of the student
+          example: John Doe
+          description: Name of the student
+        age:
+          type: integer
+          format: int32
+          example: 25
+          description: Age of the student
         email:
           type: string
           format: email
+          example: "john.doe@example.com"
           description: Email address of the student
-        course:
-          $ref: "#/components/schemas/Course"
-        classes:
-          type: array
-          items:
-            $ref: "#/components/schemas/Class"
+        phone:
+          type: string
+          example: "123-456-7890"
+          description: Phone number of the student
+        courseId:
+          type: integer
+          format: int64
+          example: 1
+          description: Unique identification of the course
 
     Course:
       type: object
       properties:
         id:
-          type: string
-          format: uuid
+          type: integer
+          format: int64
+          example: 1
           description: Unique identification of the course
         name:
           type: string
+          example: Mathematics
           description: Name of the course
-
-    Class:
-      type: object
-      properties:
-        id:
+        description:
           type: string
-          format: uuid
-          description: Unique identification of the class
-        name:
-          type: string
-          description: Name of the class
+          example: "Introduction to Algebra"
+          description: Description of the course
+        credits:
+          type: integer
+          format: int32
+          example: 3
+          description: Number of credits for the course
