@@ -70,3 +70,5 @@ dist/
 
 # Optional: Storybook build directory (if using Storybook)
 storybook-static/
+
+build
