@@ -36,8 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteStudentController = exports.createStudentController = exports.getStudentController = exports.getStudentsController = void 0;
+exports.withdrawStudentController = exports.enrollStudentController = exports.deleteStudentController = exports.createStudentController = exports.getStudentsController = void 0;
 var students_models_1 = require("../models/students.models");
+var schools_models_1 = require("../models/schools.models");
 var getStudentsController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var students, err_1;
     return __generator(this, function (_a) {
@@ -58,32 +59,8 @@ var getStudentsController = function (req, res) { return __awaiter(void 0, void 
     });
 }); };
 exports.getStudentsController = getStudentsController;
-var getStudentController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var student, err_2;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, (0, students_models_1.getStudent)(parseInt(req.params.id))];
-            case 1:
-                student = _a.sent();
-                if (!student) {
-                    res.status(404).json({ message: 'Student not found' });
-                    return [2 /*return*/];
-                }
-                res.status(200).json({ student: student });
-                return [3 /*break*/, 3];
-            case 2:
-                err_2 = _a.sent();
-                res.status(500).json({ message: 'Internal server error' });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
-        }
-    });
-}); };
-exports.getStudentController = getStudentController;
 var createStudentController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var student, err_3;
+    var student, err_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -95,7 +72,7 @@ var createStudentController = function (req, res) { return __awaiter(void 0, voi
                 res.status(201).json({ message: 'Student created' });
                 return [3 /*break*/, 3];
             case 2:
-                err_3 = _a.sent();
+                err_2 = _a.sent();
                 res.status(500).json({ message: 'Internal server error' });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
@@ -104,7 +81,7 @@ var createStudentController = function (req, res) { return __awaiter(void 0, voi
 }); };
 exports.createStudentController = createStudentController;
 var deleteStudentController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var err_4;
+    var err_3;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -115,7 +92,7 @@ var deleteStudentController = function (req, res) { return __awaiter(void 0, voi
                 res.status(200).json({ message: 'Student deleted' });
                 return [3 /*break*/, 3];
             case 2:
-                err_4 = _a.sent();
+                err_3 = _a.sent();
                 res.status(500).json({ message: 'Internal server error' });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
@@ -123,3 +100,55 @@ var deleteStudentController = function (req, res) { return __awaiter(void 0, voi
     });
 }); };
 exports.deleteStudentController = deleteStudentController;
+var enrollStudentController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var studentId, schoolId_1, userId, schools, school, err_4;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 3, , 4]);
+                studentId = parseInt(req.params.id);
+                schoolId_1 = parseInt(req.params.schoolId);
+                userId = parseInt(req.userId || '0');
+                return [4 /*yield*/, (0, schools_models_1.getSchoolsForUser)(userId)];
+            case 1:
+                schools = _a.sent();
+                school = schools.find(function (s) { return s.id === schoolId_1; });
+                if (!school) {
+                    res.status(403).json({ message: 'Forbidden' });
+                    return [2 /*return*/];
+                }
+                return [4 /*yield*/, (0, students_models_1.enrollStudent)(studentId, schoolId_1)];
+            case 2:
+                _a.sent();
+                res.status(200).json({ message: 'Student enrolled' });
+                return [3 /*break*/, 4];
+            case 3:
+                err_4 = _a.sent();
+                res.status(500).json({ message: 'Internal server error' });
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); };
+exports.enrollStudentController = enrollStudentController;
+var withdrawStudentController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var studentId, err_5;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                studentId = parseInt(req.params.id);
+                return [4 /*yield*/, (0, students_models_1.withdrawStudent)(studentId)];
+            case 1:
+                _a.sent();
+                res.status(200).json({ message: 'Student withdrawn' });
+                return [3 /*break*/, 3];
+            case 2:
+                err_5 = _a.sent();
+                res.status(500).json({ message: 'Internal server error' });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.withdrawStudentController = withdrawStudentController;

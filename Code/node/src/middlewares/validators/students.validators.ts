@@ -9,10 +9,10 @@ import Joi, {
 
 export const studentSchema = Joi.object({
     name: Joi.string().required(),
-    age: Joi.number().integer().required(),
+    age: Joi.number().integer().required().min(0),
     email: Joi.string().email().required(),
     phone: Joi.string().required(),
-    courseId: Joi.number().integer().required(),
+    schoolId: Joi.forbidden(),
 });
 
 export const validateStudent = (

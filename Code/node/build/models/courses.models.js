@@ -39,39 +39,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getCourseStudents = exports.deleteCourse = exports.createCourse = exports.getCourse = exports.getCourses = void 0;
+exports.getCourseStudents = exports.deleteCourse = exports.createCourse = void 0;
 var dbConnection_1 = __importDefault(require("../config/dbConnection"));
-var getCourses = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var queryText;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                queryText = 'SELECT * FROM Courses';
-                return [4 /*yield*/, (0, dbConnection_1.default)(queryText)];
-            case 1: return [2 /*return*/, _a.sent()];
-        }
-    });
-}); };
-exports.getCourses = getCourses;
-var getCourse = function (id) { return __awaiter(void 0, void 0, void 0, function () {
-    var queryText;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                queryText = 'SELECT * FROM Courses WHERE id = ?';
-                return [4 /*yield*/, (0, dbConnection_1.default)(queryText, [id])];
-            case 1: return [2 /*return*/, (_a.sent())[0]];
-        }
-    });
-}); };
-exports.getCourse = getCourse;
+;
 var createCourse = function (course) { return __awaiter(void 0, void 0, void 0, function () {
     var queryText;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                queryText = 'INSERT INTO Courses (name, description, credits) VALUES (?, ?, ?)';
-                return [4 /*yield*/, (0, dbConnection_1.default)(queryText, [course.name, course.description, course.credits])];
+                queryText = 'INSERT INTO Courses (name, description, credits, schoolId) VALUES (?, ?, ?, ?)';
+                return [4 /*yield*/, (0, dbConnection_1.default)(queryText, [course.name, course.description, course.credits, course.schoolId])];
             case 1:
                 _a.sent();
                 return [2 /*return*/];

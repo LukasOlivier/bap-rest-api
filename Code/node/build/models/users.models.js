@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isPasswordValid = exports.generateToken = exports.authenticateUser = exports.deleteUser = exports.createUser = exports.getUsers = exports.getUser = void 0;
+exports.isPasswordValid = exports.generateToken = exports.authenticateUser = exports.deleteUser = exports.getUsers = exports.getUser = void 0;
 var dbConnection_1 = __importDefault(require("../config/dbConnection"));
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var jwt_1 = require("../config/jwt");
@@ -67,20 +67,6 @@ var getUsers = function () { return __awaiter(void 0, void 0, void 0, function (
     });
 }); };
 exports.getUsers = getUsers;
-var createUser = function (user) { return __awaiter(void 0, void 0, void 0, function () {
-    var queryText;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                queryText = 'INSERT INTO Users (email, password) VALUES (?, ?)';
-                return [4 /*yield*/, (0, dbConnection_1.default)(queryText, [user.email, user.password])];
-            case 1:
-                _a.sent();
-                return [2 /*return*/];
-        }
-    });
-}); };
-exports.createUser = createUser;
 var deleteUser = function (id) { return __awaiter(void 0, void 0, void 0, function () {
     var queryText;
     return __generator(this, function (_a) {
@@ -114,7 +100,7 @@ var generateToken = function (user) {
     var payload = {
         userId: user.id,
     };
-    return jsonwebtoken_1.default.sign(payload, jwt_1.secretKey, { expiresIn: '1m' });
+    return jsonwebtoken_1.default.sign(payload, jwt_1.secretKey, { expiresIn: '10m' });
 };
 exports.generateToken = generateToken;
 var isPasswordValid = function (password, inputPassword) {

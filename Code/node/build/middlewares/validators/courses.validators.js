@@ -8,9 +8,11 @@ var joi_1 = __importDefault(require("joi"));
 exports.courseSchema = joi_1.default.object({
     name: joi_1.default.string().required(),
     description: joi_1.default.string().required(),
-    credits: joi_1.default.number().required().min(1)
+    credits: joi_1.default.number().required().min(1),
+    schoolId: joi_1.default.number().required(),
 });
 var validateCourse = function (req, res, next) {
+    console.log(req.body);
     var result = exports.courseSchema.validate(req.body, { abortEarly: false });
     if (result.error) {
         return res.status(422).json({

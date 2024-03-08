@@ -2,11 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var users_controllers_1 = require("../controllers/users.controllers");
-var users_validators_1 = require("../middlewares/validators/users.validators");
 var router = (0, express_1.Router)();
 router.get('/', users_controllers_1.getUsersController);
-router.post('/', users_validators_1.validateUser, users_controllers_1.createUserController);
 router.delete('/:id', users_controllers_1.deleteUserController);
 router.post('/login', users_controllers_1.loginController);
-router.post('/register', users_validators_1.validateUser, users_controllers_1.registerController);
 exports.default = router;

@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registerController = exports.loginController = exports.deleteUserController = exports.createUserController = exports.getUsersController = void 0;
+exports.loginController = exports.deleteUserController = exports.getUsersController = void 0;
 var users_models_1 = require("../models/users.models");
 var getUsersController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var users, err_1;
@@ -58,29 +58,8 @@ var getUsersController = function (req, res) { return __awaiter(void 0, void 0, 
     });
 }); };
 exports.getUsersController = getUsersController;
-var createUserController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, err_2;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                user = req.body;
-                return [4 /*yield*/, (0, users_models_1.createUser)(user)];
-            case 1:
-                _a.sent();
-                res.status(201).json({ message: 'User created' });
-                return [3 /*break*/, 3];
-            case 2:
-                err_2 = _a.sent();
-                res.status(500).json({ message: 'Internal server error' });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
-        }
-    });
-}); };
-exports.createUserController = createUserController;
 var deleteUserController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var err_3;
+    var err_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -91,7 +70,7 @@ var deleteUserController = function (req, res) { return __awaiter(void 0, void 0
                 res.status(200).json({ message: 'User deleted' });
                 return [3 /*break*/, 3];
             case 2:
-                err_3 = _a.sent();
+                err_2 = _a.sent();
                 res.status(500).json({ message: 'Internal server error' });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
@@ -100,7 +79,7 @@ var deleteUserController = function (req, res) { return __awaiter(void 0, void 0
 }); };
 exports.deleteUserController = deleteUserController;
 var loginController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, token, err_4;
+    var _a, email, password, user, token, userId, err_3;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -111,14 +90,15 @@ var loginController = function (req, res) { return __awaiter(void 0, void 0, voi
                 user = _b.sent();
                 if (user) {
                     token = (0, users_models_1.generateToken)(user);
-                    res.status(200).json({ token: token });
+                    userId = user.id;
+                    res.status(200).json({ token: token, userId: userId });
                 }
                 else {
                     res.status(401).json({ message: 'Invalid credentials' });
                 }
                 return [3 /*break*/, 3];
             case 2:
-                err_4 = _b.sent();
+                err_3 = _b.sent();
                 res.status(500).json({ message: 'Internal server error' });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
@@ -126,32 +106,3 @@ var loginController = function (req, res) { return __awaiter(void 0, void 0, voi
     });
 }); };
 exports.loginController = loginController;
-var registerController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var user_1, users, existingUser, err_5;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 3, , 4]);
-                user_1 = req.body;
-                return [4 /*yield*/, (0, users_models_1.getUsers)()];
-            case 1:
-                users = _a.sent();
-                existingUser = users.find(function (u) { return u.email === user_1.email; });
-                if (existingUser) {
-                    res.status(400).json({ message: 'User already exists' });
-                    return [2 /*return*/];
-                }
-                return [4 /*yield*/, (0, users_models_1.createUser)(user_1)];
-            case 2:
-                _a.sent();
-                res.status(201).json({ message: 'User created' });
-                return [3 /*break*/, 4];
-            case 3:
-                err_5 = _a.sent();
-                res.status(500).json({ message: 'Internal server error' });
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
-        }
-    });
-}); };
-exports.registerController = registerController;

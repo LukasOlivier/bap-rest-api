@@ -1,9 +1,10 @@
 import { Router } from 'express';
 import {
-    getStudentsController,
-    getStudentController,
     createStudentController,
     deleteStudentController,
+    getStudentsController,
+    enrollStudentController,
+    withdrawStudentController
 } from '../controllers/students.controllers';
 import {
     validateStudent
@@ -15,8 +16,9 @@ import {
 const router = Router();
 
 router.get('/', getStudentsController);
-router.get('/:id', getStudentController);
-router.post('/', verifyJWT, validateStudent, createStudentController);
-router.delete('/:id', verifyJWT, deleteStudentController);
+router.post('/', validateStudent, createStudentController);
+router.delete('/:id', deleteStudentController);
+router.post('/:id/enroll/:schoolId', verifyJWT, enrollStudentController);
+router.post('/:id/withdraw/:schoolId', verifyJWT, withdrawStudentController);
 
 export default router

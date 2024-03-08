@@ -39,32 +39,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteStudent = exports.createStudent = exports.getStudent = exports.getStudents = void 0;
+exports.withdrawStudent = exports.enrollStudent = exports.deleteStudent = exports.createStudent = exports.getStudents = void 0;
 var dbConnection_1 = __importDefault(require("../config/dbConnection"));
 var getStudents = function () { return __awaiter(void 0, void 0, void 0, function () {
     var queryText;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                queryText = 'SELECT * FROM Students';
-                return [4 /*yield*/, (0, dbConnection_1.default)(queryText)];
+                queryText = 'SELECT * FROM Students WHERE schoolId IS NULL';
+                return [4 /*yield*/, (0, dbConnection_1.default)(queryText, [])];
             case 1: return [2 /*return*/, _a.sent()];
         }
     });
 }); };
 exports.getStudents = getStudents;
-var getStudent = function (id) { return __awaiter(void 0, void 0, void 0, function () {
-    var queryText;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                queryText = 'SELECT * FROM Students WHERE id = ?';
-                return [4 /*yield*/, (0, dbConnection_1.default)(queryText, [id])];
-            case 1: return [2 /*return*/, (_a.sent())[0]];
-        }
-    });
-}); };
-exports.getStudent = getStudent;
 var createStudent = function (student) { return __awaiter(void 0, void 0, void 0, function () {
     var queryText;
     return __generator(this, function (_a) {
@@ -93,3 +81,31 @@ var deleteStudent = function (id) { return __awaiter(void 0, void 0, void 0, fun
     });
 }); };
 exports.deleteStudent = deleteStudent;
+var enrollStudent = function (studentId, schoolId) { return __awaiter(void 0, void 0, void 0, function () {
+    var queryText;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                queryText = 'UPDATE Students SET schoolId = ? WHERE id = ?';
+                return [4 /*yield*/, (0, dbConnection_1.default)(queryText, [schoolId, studentId])];
+            case 1:
+                _a.sent();
+                return [2 /*return*/];
+        }
+    });
+}); };
+exports.enrollStudent = enrollStudent;
+var withdrawStudent = function (studentId) { return __awaiter(void 0, void 0, void 0, function () {
+    var queryText;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                queryText = 'UPDATE Students SET schoolId = NULL WHERE id = ?';
+                return [4 /*yield*/, (0, dbConnection_1.default)(queryText, [studentId])];
+            case 1:
+                _a.sent();
+                return [2 /*return*/];
+        }
+    });
+}); };
+exports.withdrawStudent = withdrawStudent;

@@ -9,22 +9,6 @@ servers:
     description: Express server
 
 paths:
-  /users/register:
-    post:
-      summary: Register a new user
-      description: Register a new user with basic information.
-      tags:
-        - Authentication
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
-      responses:
-        "201":
-          description: Successfully registered
-
   /users/login:
     post:
       summary: User login
@@ -41,11 +25,11 @@ paths:
                 email:
                   type: string
                   format: email
-                  example: "john.doe@example.com"
+                  example: "user1@example.com"
                   description: Email address of the user
                 password:
                   type: string
-                  example: "password123"
+                  example: "password"
                   description: User's password
       responses:
         "200":
@@ -59,8 +43,49 @@ paths:
                     type: string
                     example: "your_jwt_token_here"
                     description: JWT token for authentication
+  /schools:
+    get:
+      summary: Retrieve the list of your schools
+      description: View the list of schools that you own.
+      tags:
+        - School
+      responses:
+        "200":
+          description: Successfully retrieved
+      security:
+        - BearerAuth: []
+      
+  /schools/{id}/students:
+    get:
+      summary: Retrieve the list of students enrolled in one of your schools
+      description: View the list of students enrolled in one of your schools.
+      tags:
+        - School
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identification of the school
+          schema:
+            type: integer
+            format: int64
+            example: 1
+      responses:
+        "200":
+          description: Successfully retrieved 
+      security:
+        - BearerAuth: []
+        
+  /students:    
+    get:
+      summary: Retrieve the list of students that are not enrolled in any school
+      description: View the list of students with basic information.
+      tags:
+        - Student
+      responses:
+        "200":
+          description: Successfully retrieved
 
-  /students:
     post:
       summary: Add new students
       description: Add new students with basic information.
@@ -75,41 +100,11 @@ paths:
       responses:
         "201":
           description: Successfully created
-      security:
-        - BearerAuth: []
-    get:
-      summary: Retrieve the list of students
-      description: View the list of students or search based on criteria such as class or age.
-      tags:
-        - Student
-      responses:
-        "200":
-          description: Successfully retrieved
-
+    
   /students/{id}:
-    get:
-      summary: Retrieve a student
-      description: View the details of a student.
-      tags:
-        - Student
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identification of the student
-          schema:
-            type: integer
-            format: int64
-            example: 1
-      responses:
-        "200":
-          description: Successfully retrieved
-        "404":
-          description: Student not found
-
     delete:
       summary: Delete a student
-      description: Delete a student from the system.
+      description: Delete a student from the database.
       tags:
         - Student
       parameters:
@@ -122,127 +117,36 @@ paths:
             format: int64
             example: 1
       responses:
-        "204":
+        "200":
           description: Successfully deleted
         "404":
           description: Student not found
-      security:
-        - BearerAuth: []
 
-  /courses:
+
+  /students/{id}/enroll/{schoolId}:
     post:
-      summary: Add new courses
-      description: Add new courses with basic information.
-      tags:
-        - Course
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Course"
-      responses:
-        "201":
-          description: Successfully created
-      security:
-        - BearerAuth: []
-
-    get:
-      summary: Retrieve the list of courses
-      description: View the list of courses or search based on criteria such as credits or name.
-      tags:
-        - Course
-      responses:
-        "200":
-          description: Successfully retrieved
-
-  /courses/{id}:
-    get:
-      summary: Retrieve a course
-      description: View the details of a course.
-      tags:
-        - Course
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identification of the course
-          schema:
-            type: integer
-            format: int64
-            example: 1
-      responses:
-        "200":
-          description: Successfully retrieved
-        "404":
-          description: Course not found
-
-    delete:
-      summary: Delete a course
-      description: Delete a course from the system.
-      tags:
-        - Course
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identification of the course
-          schema:
-            type: integer
-            format: int64
-            example: 1
-      responses:
-        "204":
-          description: Successfully deleted
-        "404":
-          description: Course not found
-      security:
-        - BearerAuth: []
-
-  /courses/{id}/students:
-    get:
-      summary: Retrieve the list of students enrolled in a course
-      description: View the list of students enrolled in a course.
-      tags:
-        - Course
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identification of the course
-          schema:
-            type: integer
-            format: int64
-            example: 1
-      responses:
-        "200":
-          description: Successfully retrieved
-        "404":
-          description: Course not found
-
-  /enroll:
-    post:
-      summary: Enroll a student in a course
-      description: Enroll a student in a course.
+      summary: Enroll a student in one of your schools
+      description: Enroll a student in one of your schools.
       tags:
         - Enrollment
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                studentId:
-                  type: integer
-                  format: int64
-                  example: 1
-                  description: Unique identification of the student
-                courseId:
-                  type: integer
-                  format: int64
-                  example: 1
-                  description: Unique identification of the course
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identification of the student
+          schema:
+            type: integer
+            format: int64
+            example: 1
+        - name: schoolId
+          in: path
+          required: true
+          description: Unique identification of the school
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
       responses:
         "201":
           description: Successfully enrolled
@@ -251,26 +155,32 @@ paths:
       security:
         - BearerAuth: []
 
-    delete:
-      summary: Withdraw a student from a course
-      description: Withdraw a student from a course.
+  /students/{id}/withdraw/{schoolId}:
+    post:
+      summary: Withdraw a student from one of your schools
+      description: Withdraw a student from one of your schools.
       tags:
         - Enrollment
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                studentId:
-                  type: integer
-                  format: int64
-                  example: 1
-                  description: Unique identification of the student
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identification of the student
+          schema:
+            type: integer
+            format: int64
+            example: 1
+        - name: schoolId
+          in: path
+          required: true
+          description: Unique identification of the school
+          schema:
+            type: integer
+            format: int64
+            example: 1
       responses:
-        "204":
-          description: Successfully unenrolled
+        "200":
+          description: Successfully withdrawn
         "404":
           description: Student or course not found
       security:
@@ -299,28 +209,11 @@ components:
           type: string
           example: "123-456-7890"
           description: Phone number of the student
-        courseId:
+        schoolId:
           type: integer
           format: int64
-          example: 1
-          description: Unique identification of the course
-
-    Course:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Mathematics
-          description: Name of the course
-        description:
-          type: string
-          example: "Introduction to Algebra"
-          description: Description of the course
-        credits:
-          type: integer
-          format: int32
-          example: 3
-          description: Number of credits for the course
+          example: null
+          description: Unique identification of the school
 
     User:
       type: object
@@ -335,7 +228,21 @@ components:
           example: "password123"
           description: User's password (hashed in a real-world scenario)
 
+    School:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Harvard University"
+          description: Name of the school
+        ownerId:
+          type: integer
+          format: int64
+          example: 1
+          description: Unique identification of the owner
+
   securitySchemes:
     BearerAuth:
       type: http
       scheme: bearer
+      bearerFormat: JWT

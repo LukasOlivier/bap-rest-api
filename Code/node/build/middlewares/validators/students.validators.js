@@ -7,10 +7,10 @@ exports.validateStudent = exports.studentSchema = void 0;
 var joi_1 = __importDefault(require("joi"));
 exports.studentSchema = joi_1.default.object({
     name: joi_1.default.string().required(),
-    age: joi_1.default.number().integer().required(),
+    age: joi_1.default.number().integer().required().min(0),
     email: joi_1.default.string().email().required(),
     phone: joi_1.default.string().required(),
-    courseId: joi_1.default.number().integer().required(),
+    schoolId: joi_1.default.forbidden(),
 });
 var validateStudent = function (req, res, next) {
     var result = exports.studentSchema.validate(req.body, { abortEarly: false });

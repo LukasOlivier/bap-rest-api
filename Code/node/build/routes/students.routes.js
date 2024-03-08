@@ -6,7 +6,8 @@ var students_validators_1 = require("../middlewares/validators/students.validato
 var jwt_1 = require("../middlewares/authentication/jwt");
 var router = (0, express_1.Router)();
 router.get('/', students_controllers_1.getStudentsController);
-router.get('/:id', students_controllers_1.getStudentController);
-router.post('/', jwt_1.verifyJWT, students_validators_1.validateStudent, students_controllers_1.createStudentController);
-router.delete('/:id', jwt_1.verifyJWT, students_controllers_1.deleteStudentController);
+router.post('/', students_validators_1.validateStudent, students_controllers_1.createStudentController);
+router.delete('/:id', students_controllers_1.deleteStudentController);
+router.post('/:id/enroll/:schoolId', jwt_1.verifyJWT, students_controllers_1.enrollStudentController);
+router.post('/:id/withdraw/:schoolId', jwt_1.verifyJWT, students_controllers_1.withdrawStudentController);
 exports.default = router;

@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import {
     User,
     getUsers,
-    createUser,
     deleteUser,
     authenticateUser,
     generateToken,
@@ -17,17 +16,6 @@ export const getUsersController = async (req: Request, res: Response): Promise<v
         res.status(500).json({ message: 'Internal server error' });
     }
 }
-
-export const createUserController = async (req: Request, res: Response): Promise<void> => {
-    try {
-        const user: User = req.body;
-        await createUser(user);
-        res.status(201).json({ message: 'User created' });
-    }
-    catch (err) {
-        res.status(500).json({ message: 'Internal server error' });
-    }
-};
 
 export const deleteUserController = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -46,7 +34,8 @@ export const loginController = async (req: Request, res: Response): Promise<void
         const user: User | null = await authenticateUser(email, password);
         if (user) {
             const token = generateToken(user);
-            res.status(200).json({ token });
+            const userId = user.id;
+            res.status(200).json({ token, userId });
         } else {
             res.status(401).json({ message: 'Invalid credentials' });
         }
@@ -56,20 +45,3 @@ export const loginController = async (req: Request, res: Response): Promise<void
     }
 };
 
-export const registerController = async (req: Request, res: Response): Promise<void> => {
-    try {
-        const user: User = req.body;
-
-        const users: User[] = await getUsers();
-        const existingUser = users.find(u => u.email === user.email);
-        if (existingUser) {
-            res.status(400).json({ message: 'User already exists' });
-            return;
-        }
-
-        await createUser(user);
-        res.status(201).json({ message: 'User created' });
-    } catch (err) {
-        res.status(500).json({ message: 'Internal server error' });
-    }
-};

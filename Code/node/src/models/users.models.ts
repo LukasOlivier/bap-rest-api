@@ -18,10 +18,6 @@ export const getUsers = async (): Promise<User[]> => {
     return await query<User>(queryText, []);
 }
 
-export const createUser = async (user: User): Promise<void> => {
-    const queryText = 'INSERT INTO Users (email, password) VALUES (?, ?)';
-    await query(queryText, [user.email, user.password]);
-}
 
 export const deleteUser = async (id: number): Promise<void> => {
     const queryText = 'DELETE FROM Users WHERE id = ?';
@@ -40,7 +36,7 @@ export const generateToken = (user: User): string => {
     const payload = {
         userId: user.id,
     };
-    return jwt.sign(payload, secretKey, { expiresIn: '1m' });
+    return jwt.sign(payload, secretKey, { expiresIn: '10m' });
 }
 
 export const isPasswordValid = (password: string, inputPassword: string): boolean => {

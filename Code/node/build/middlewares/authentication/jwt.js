@@ -12,10 +12,13 @@ var verifyJWT = function (req, res, next) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
     var token = authHeader.split(' ')[1];
-    jsonwebtoken_1.default.verify(token, jwt_1.secretKey, function (err) {
+    jsonwebtoken_1.default.verify(token, jwt_1.secretKey, function (err, decoded) {
         if (err) {
             return res.status(403).json({ message: 'Forbidden' });
         }
+        console.log(decoded);
+        req.userId = decoded.userId;
+        console.log(req.userId);
         next();
     });
 };
