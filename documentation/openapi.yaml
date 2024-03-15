@@ -6,12 +6,12 @@ info:
 
 servers:
   - url: http://localhost:3000
-    description: Express server
+    description: Development server
 
 paths:
   /users/login:
     post:
-      summary: User login
+      summary: User Login
       description: Authenticate a user and obtain a JWT token.
       tags:
         - Authentication
@@ -20,17 +20,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  format: email
-                  example: "user1@example.com"
-                  description: Email address of the user
-                password:
-                  type: string
-                  example: "password"
-                  description: User's password
+              $ref: "#/components/schemas/User"
       responses:
         "200":
           description: Successfully logged in
@@ -43,10 +33,11 @@ paths:
                     type: string
                     example: "your_jwt_token_here"
                     description: JWT token for authentication
+
   /schools:
     get:
-      summary: Retrieve the list of your schools
-      description: View the list of schools that you own.
+      summary: List Your Schools
+      description: Retrieve the list of schools that you own.
       tags:
         - School
       responses:
@@ -54,32 +45,31 @@ paths:
           description: Successfully retrieved
       security:
         - BearerAuth: []
-      
+
   /schools/{id}/students:
     get:
-      summary: Retrieve the list of students enrolled in one of your schools
-      description: View the list of students enrolled in one of your schools.
+      summary: List Enrolled Students
+      description: Retrieve the list of students enrolled in one of your schools.
       tags:
         - School
       parameters:
         - name: id
           in: path
           required: true
-          description: Unique identification of the school
+          description: Unique identifier of the school
           schema:
             type: integer
             format: int64
-            example: 1
       responses:
         "200":
-          description: Successfully retrieved 
+          description: Successfully retrieved
       security:
         - BearerAuth: []
-        
-  /students:    
+
+  /students:
     get:
-      summary: Retrieve the list of students that are not enrolled in any school
-      description: View the list of students with basic information.
+      summary: List Unenrolled Students
+      description: Retrieve the list of students that are not enrolled in any school.
       tags:
         - Student
       responses:
@@ -87,7 +77,7 @@ paths:
           description: Successfully retrieved
 
     post:
-      summary: Add new students
+      summary: Add New Student
       description: Add new students with basic information.
       tags:
         - Student
@@ -100,10 +90,10 @@ paths:
       responses:
         "201":
           description: Successfully created
-    
+
   /students/{id}:
     delete:
-      summary: Delete a student
+      summary: Delete Student
       description: Delete a student from the database.
       tags:
         - Student
@@ -111,21 +101,19 @@ paths:
         - name: id
           in: path
           required: true
-          description: Unique identification of the student
+          description: Unique identifier of the student
           schema:
             type: integer
             format: int64
-            example: 1
       responses:
         "200":
           description: Successfully deleted
         "404":
           description: Student not found
 
-
   /students/{id}/enroll/{schoolId}:
     post:
-      summary: Enroll a student in one of your schools
+      summary: Enroll Student
       description: Enroll a student in one of your schools.
       tags:
         - Enrollment
@@ -133,31 +121,28 @@ paths:
         - name: id
           in: path
           required: true
-          description: Unique identification of the student
+          description: Unique identifier of the student
           schema:
             type: integer
             format: int64
-            example: 1
         - name: schoolId
           in: path
           required: true
-          description: Unique identification of the school
+          description: Unique identifier of the school
           schema:
             type: integer
             format: int64
-            example: 1
-
       responses:
         "201":
           description: Successfully enrolled
         "404":
-          description: Student or course not found
+          description: Student or school not found
       security:
         - BearerAuth: []
 
   /students/{id}/withdraw/{schoolId}:
     post:
-      summary: Withdraw a student from one of your schools
+      summary: Withdraw Student
       description: Withdraw a student from one of your schools.
       tags:
         - Enrollment
@@ -165,24 +150,22 @@ paths:
         - name: id
           in: path
           required: true
-          description: Unique identification of the student
+          description: Unique identifier of the student
           schema:
             type: integer
             format: int64
-            example: 1
         - name: schoolId
           in: path
           required: true
-          description: Unique identification of the school
+          description: Unique identifier of the school
           schema:
             type: integer
             format: int64
-            example: 1
       responses:
         "200":
           description: Successfully withdrawn
         "404":
-          description: Student or course not found
+          description: Student or school not found
       security:
         - BearerAuth: []
 
@@ -213,7 +196,7 @@ components:
           type: integer
           format: int64
           example: null
-          description: Unique identification of the school
+          description: Identifier of the school (if enrolled)
 
     User:
       type: object
@@ -227,19 +210,6 @@ components:
           type: string
           example: "password123"
           description: User's password (hashed in a real-world scenario)
-
-    School:
-      type: object
-      properties:
-        name:
-          type: string
-          example: "Harvard University"
-          description: Name of the school
-        ownerId:
-          type: integer
-          format: int64
-          example: 1
-          description: Unique identification of the owner
 
   securitySchemes:
     BearerAuth:
