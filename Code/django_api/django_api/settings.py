@@ -75,10 +75,18 @@ WSGI_APPLICATION = 'django_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+import os
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'mssql',  # Database engine for SQL Server
+        'NAME': 'BAP',  # Database name from connection string
+        'HOST': 'INTEGREAT-OEW3C',  # SQL Server host from connection string
+        'PORT': '',  # Port is usually 1433 (default for SQL Server)
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',  # Or 'ODBC Driver 18 for SQL Server' based on your driver version
+            'dsn': '',  # Not required for Windows Authentication
+        },
     }
 }
 
