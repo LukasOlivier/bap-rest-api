@@ -4,12 +4,12 @@ from .models import School, Student, ApiUser
 class SchoolSerializer(serializers.ModelSerializer):
     class Meta:
         model = School
-        fields = '__all__'
+        fields = ['name', 'ownerId']
 
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = '__all__'
+        fields = ['id', 'name', 'age', 'email', 'phone', 'schoolId']
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
