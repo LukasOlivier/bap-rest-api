@@ -28,7 +28,7 @@ class Student(models.Model):
         return self.name
 
 
-class User(models.Model):
+class ApiUser(models.Model):
     email = models.CharField(max_length=200)
     password = models.CharField(max_length=200)
 
