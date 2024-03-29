@@ -3,20 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F2EC9CC4-1811-4E72-B9D4-31BC1814D816}|BapStudentApi\\BapStudentApi.csproj|c:\\users\\lol\\desktop\\howest\\bap\\code\\asp-net\\bapstudentapi\\models\\school.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F2EC9CC4-1811-4E72-B9D4-31BC1814D816}|BapStudentApi\\BapStudentApi.csproj|solutionrelative:bapstudentapi\\models\\school.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F2EC9CC4-1811-4E72-B9D4-31BC1814D816}|BapStudentApi\\BapStudentApi.csproj|c:\\users\\lol\\desktop\\howest\\bap\\code\\asp-net\\bapstudentapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2EC9CC4-1811-4E72-B9D4-31BC1814D816}|BapStudentApi\\BapStudentApi.csproj|solutionrelative:bapstudentapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2EC9CC4-1811-4E72-B9D4-31BC1814D816}|BapStudentApi\\BapStudentApi.csproj|c:\\users\\lol\\desktop\\howest\\bap\\code\\asp-net\\bapstudentapi\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F2EC9CC4-1811-4E72-B9D4-31BC1814D816}|BapStudentApi\\BapStudentApi.csproj|solutionrelative:bapstudentapi\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F2EC9CC4-1811-4E72-B9D4-31BC1814D816}|BapStudentApi\\BapStudentApi.csproj|c:\\users\\lol\\desktop\\howest\\bap\\code\\asp-net\\bapstudentapi\\controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2EC9CC4-1811-4E72-B9D4-31BC1814D816}|BapStudentApi\\BapStudentApi.csproj|solutionrelative:bapstudentapi\\controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2EC9CC4-1811-4E72-B9D4-31BC1814D816}|BapStudentApi\\BapStudentApi.csproj|c:\\users\\lol\\desktop\\howest\\bap\\code\\asp-net\\bapstudentapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F2EC9CC4-1811-4E72-B9D4-31BC1814D816}|BapStudentApi\\BapStudentApi.csproj|solutionrelative:bapstudentapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F2EC9CC4-1811-4E72-B9D4-31BC1814D816}|BapStudentApi\\BapStudentApi.csproj|c:\\users\\lol\\desktop\\howest\\bap\\code\\asp-net\\bapstudentapi\\controllers\\schoolscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2EC9CC4-1811-4E72-B9D4-31BC1814D816}|BapStudentApi\\BapStudentApi.csproj|solutionrelative:bapstudentapi\\controllers\\schoolscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2EC9CC4-1811-4E72-B9D4-31BC1814D816}|BapStudentApi\\BapStudentApi.csproj|c:\\users\\lol\\desktop\\howest\\bap\\code\\asp-net\\bapstudentapi\\controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F2EC9CC4-1811-4E72-B9D4-31BC1814D816}|BapStudentApi\\BapStudentApi.csproj|solutionrelative:bapstudentapi\\controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F2EC9CC4-1811-4E72-B9D4-31BC1814D816}|BapStudentApi\\BapStudentApi.csproj|c:\\users\\lol\\desktop\\howest\\bap\\code\\asp-net\\bapstudentapi\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2EC9CC4-1811-4E72-B9D4-31BC1814D816}|BapStudentApi\\BapStudentApi.csproj|solutionrelative:bapstudentapi\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2EC9CC4-1811-4E72-B9D4-31BC1814D816}|BapStudentApi\\BapStudentApi.csproj|c:\\users\\lol\\desktop\\howest\\bap\\code\\asp-net\\bapstudentapi\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2EC9CC4-1811-4E72-B9D4-31BC1814D816}|BapStudentApi\\BapStudentApi.csproj|solutionrelative:bapstudentapi\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2EC9CC4-1811-4E72-B9D4-31BC1814D816}|BapStudentApi\\BapStudentApi.csproj|c:\\users\\lol\\desktop\\howest\\bap\\code\\asp-net\\bapstudentapi\\models\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2EC9CC4-1811-4E72-B9D4-31BC1814D816}|BapStudentApi\\BapStudentApi.csproj|solutionrelative:bapstudentapi\\models\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 253,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,54 +50,93 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Student.cs",
-              "DocumentMoniker": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\Models\\Student.cs",
-              "RelativeDocumentMoniker": "BapStudentApi\\Models\\Student.cs",
-              "ToolTip": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\Models\\Student.cs",
-              "RelativeToolTip": "BapStudentApi\\Models\\Student.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAACMAAAAmAAAA",
+              "DocumentIndex": 6,
+              "Title": "JwtSettings.cs",
+              "DocumentMoniker": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\Models\\JwtSettings.cs",
+              "RelativeDocumentMoniker": "BapStudentApi\\Models\\JwtSettings.cs",
+              "ToolTip": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\Models\\JwtSettings.cs",
+              "RelativeToolTip": "BapStudentApi\\Models\\JwtSettings.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-28T15:11:35.288Z",
+              "WhenOpened": "2024-03-29T12:12:53.269Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "School.cs",
-              "DocumentMoniker": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\Models\\School.cs",
-              "RelativeDocumentMoniker": "BapStudentApi\\Models\\School.cs",
-              "ToolTip": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\Models\\School.cs",
-              "RelativeToolTip": "BapStudentApi\\Models\\School.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAABYAAAA",
+              "DocumentIndex": 4,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "BapStudentApi\\Controllers\\UsersController.cs",
+              "ToolTip": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "BapStudentApi\\Controllers\\UsersController.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAACgAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-28T15:11:33.425Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SchoolsController.cs",
-              "DocumentMoniker": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\Controllers\\SchoolsController.cs",
-              "RelativeDocumentMoniker": "BapStudentApi\\Controllers\\SchoolsController.cs",
-              "ToolTip": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\Controllers\\SchoolsController.cs",
-              "RelativeToolTip": "BapStudentApi\\Controllers\\SchoolsController.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAgwDgAAAAzAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-28T15:10:34.19Z",
+              "WhenOpened": "2024-03-29T12:11:14.39Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "SchoolsController.cs",
+              "DocumentMoniker": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\Controllers\\SchoolsController.cs",
+              "RelativeDocumentMoniker": "BapStudentApi\\Controllers\\SchoolsController.cs",
+              "ToolTip": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\Controllers\\SchoolsController.cs",
+              "RelativeToolTip": "BapStudentApi\\Controllers\\SchoolsController.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAAAA0AAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-29T12:11:09.881Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\Program.cs",
+              "RelativeDocumentMoniker": "BapStudentApi\\Program.cs",
+              "ToolTip": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\Program.cs",
+              "RelativeToolTip": "BapStudentApi\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-29T12:06:52.422Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\appsettings.json",
+              "RelativeDocumentMoniker": "BapStudentApi\\appsettings.json",
+              "ToolTip": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\appsettings.json",
+              "RelativeToolTip": "BapStudentApi\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-03-29T11:08:08.058Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Student.cs",
+              "DocumentMoniker": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\Models\\Student.cs",
+              "RelativeDocumentMoniker": "BapStudentApi\\Models\\Student.cs",
+              "ToolTip": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\Models\\Student.cs",
+              "RelativeToolTip": "BapStudentApi\\Models\\Student.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAAAC4AAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-29T10:54:44.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "StudentsController.cs",
               "DocumentMoniker": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\Controllers\\StudentsController.cs",
               "RelativeDocumentMoniker": "BapStudentApi\\Controllers\\StudentsController.cs",
               "ToolTip": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\Controllers\\StudentsController.cs",
               "RelativeToolTip": "BapStudentApi\\Controllers\\StudentsController.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAgwAAAAAAAAAAA",
+              "ViewState": "AQIAABcAAAAAAAAAAAAAABcAAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-28T15:10:32.037Z",
+              "WhenOpened": "2024-03-29T10:54:41.094Z",
               "EditorCaption": ""
             }
           ]

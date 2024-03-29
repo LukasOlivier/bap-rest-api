@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BapStudentApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c3fa89d5a9d679460dd7b91afe323480a43fd0a2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be71bcc2226ffaa8b8b343e9493bcf50f7870417")]
 [assembly: System.Reflection.AssemblyProductAttribute("BapStudentApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BapStudentApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

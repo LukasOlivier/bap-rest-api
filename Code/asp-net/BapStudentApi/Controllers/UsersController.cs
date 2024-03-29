@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using BapStudentApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using BapStudentApi.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.AspNetCore.Authorization;
 
 namespace BapStudentApi.Controllers
 {
@@ -19,10 +13,12 @@ namespace BapStudentApi.Controllers
     public class UsersController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly JwtSettings _jwtSettings;
 
-        public UsersController(AppDbContext context)
+        public UsersController(AppDbContext context, JwtSettings jwtSettings)
         {
             _context = context;
+            _jwtSettings = jwtSettings;
         }
 
         [HttpGet]
@@ -42,7 +38,7 @@ namespace BapStudentApi.Controllers
             }
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("ThisIsASuperLongKeyThatYouShouldChange");
+            var key = Encoding.ASCII.GetBytes(_jwtSettings.Key);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
@@ -50,8 +46,8 @@ namespace BapStudentApi.Controllers
                     new Claim(ClaimTypes.Name, userFromDb.Email),
                 }),
                 Expires = DateTime.UtcNow.AddDays(1),
-                Issuer = "http://localhost:3000",
-                Audience = "http://localhost:3000",
+                Issuer = _jwtSettings.Issuer,
+                Audience = _jwtSettings.Audience,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 

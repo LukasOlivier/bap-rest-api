@@ -72,3 +72,8 @@ dist/
 storybook-static/
 
 build
+
+# aspnetcore
+.vs/
+appsettings.Development.json
+appsettings.json
