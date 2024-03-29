@@ -1,0 +1,5 @@
+C:\Users\lol\source\repos\BapStudentApi\obj\Debug\net8.0\BapStudentApi.csproj.AssemblyReference.cache
+C:\Users\lol\source\repos\BapStudentApi\obj\Debug\net8.0\BapStudentApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lol\source\repos\BapStudentApi\obj\Debug\net8.0\BapStudentApi.AssemblyInfoInputs.cache
+C:\Users\lol\source\repos\BapStudentApi\obj\Debug\net8.0\BapStudentApi.AssemblyInfo.cs
+C:\Users\lol\source\repos\BapStudentApi\obj\Debug\net8.0\BapStudentApi.csproj.CoreCompileInputs.cache

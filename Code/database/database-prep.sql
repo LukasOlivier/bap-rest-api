@@ -38,3 +38,7 @@ VALUES ('Alice Smith', 20, 'alice.smith@example.com', '+1234567890', 1),
        ('Bob Jones', 22, 'bob.jones@example.com', '+1987654321', 1),
        ('Charlie Brown', 21, 'charlie.brown@example.com', '+1123456789', 2),
        ('Daisy Johnson', 23, 'daisy.johnson@example.com', '+1157856799', 2);
+
+SELECT * FROM Users;
+SELECT * FROM Schools;
+SELECT * FROM Students;

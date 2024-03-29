@@ -5,7 +5,7 @@ info:
   description: API for managing students, courses, and classes in a school.
 
 servers:
-  - url: http://localhost:3000
+  - url: https://localhost:3000
     description: Development server
 
 paths:
