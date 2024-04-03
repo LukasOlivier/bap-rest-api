@@ -1,0 +1,149 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model auth_group {
+  id                     Int                      @id(map: "PK__auth_gro__3213E83F6513A4B2") @default(autoincrement())
+  name                   String                   @unique(map: "auth_group_name_a6ea08ec_uniq") @db.NVarChar(150)
+  auth_group_permissions auth_group_permissions[]
+  auth_user_groups       auth_user_groups[]
+}
+
+model auth_group_permissions {
+  id              BigInt          @id(map: "PK__auth_gro__3213E83F72140444") @default(autoincrement())
+  group_id        Int
+  permission_id   Int
+  auth_group      auth_group      @relation(fields: [group_id], references: [id], onUpdate: NoAction, map: "auth_group_permissions_group_id_b120cbf9_fk_auth_group_id")
+  auth_permission auth_permission @relation(fields: [permission_id], references: [id], onUpdate: NoAction, map: "auth_group_permissions_permission_id_84c5c92e_fk_auth_permission_id")
+
+  @@index([group_id], map: "auth_group_permissions_group_id_b120cbf9")
+  @@index([permission_id], map: "auth_group_permissions_permission_id_84c5c92e")
+}
+
+model auth_permission {
+  id                         Int                          @id(map: "PK__auth_per__3213E83F26208EFB") @default(autoincrement())
+  name                       String                       @db.NVarChar(255)
+  content_type_id            Int
+  codename                   String                       @db.NVarChar(100)
+  auth_group_permissions     auth_group_permissions[]
+  django_content_type        django_content_type          @relation(fields: [content_type_id], references: [id], onUpdate: NoAction, map: "auth_permission_content_type_id_2f476e4b_fk_django_content_type_id")
+  auth_user_user_permissions auth_user_user_permissions[]
+
+  @@index([content_type_id], map: "auth_permission_content_type_id_2f476e4b")
+}
+
+model auth_user {
+  id                         Int                          @id(map: "PK__auth_use__3213E83FEE7EE3A3") @default(autoincrement())
+  password                   String                       @db.NVarChar(128)
+  last_login                 DateTime?                    @db.DateTimeOffset
+  is_superuser               Boolean
+  username                   String                       @unique(map: "auth_user_username_6821ab7c_uniq") @db.NVarChar(150)
+  first_name                 String                       @db.NVarChar(150)
+  last_name                  String                       @db.NVarChar(150)
+  email                      String                       @db.NVarChar(254)
+  is_staff                   Boolean
+  is_active                  Boolean
+  date_joined                DateTime                     @db.DateTimeOffset
+  auth_user_groups           auth_user_groups[]
+  auth_user_user_permissions auth_user_user_permissions[]
+  authtoken_token            authtoken_token?
+  django_admin_log           django_admin_log[]
+}
+
+model auth_user_groups {
+  id         BigInt     @id(map: "PK__auth_use__3213E83FE1BB69F9") @default(autoincrement())
+  user_id    Int
+  group_id   Int
+  auth_group auth_group @relation(fields: [group_id], references: [id], onUpdate: NoAction, map: "auth_user_groups_group_id_97559544_fk_auth_group_id")
+  auth_user  auth_user  @relation(fields: [user_id], references: [id], onUpdate: NoAction, map: "auth_user_groups_user_id_6a12ed8b_fk_auth_user_id")
+
+  @@index([group_id], map: "auth_user_groups_group_id_97559544")
+  @@index([user_id], map: "auth_user_groups_user_id_6a12ed8b")
+}
+
+model auth_user_user_permissions {
+  id              BigInt          @id(map: "PK__auth_use__3213E83F548F0ADA") @default(autoincrement())
+  user_id         Int
+  permission_id   Int
+  auth_permission auth_permission @relation(fields: [permission_id], references: [id], onUpdate: NoAction, map: "auth_user_user_permissions_permission_id_1fbb5f2c_fk_auth_permission_id")
+  auth_user       auth_user       @relation(fields: [user_id], references: [id], onUpdate: NoAction, map: "auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id")
+
+  @@index([permission_id], map: "auth_user_user_permissions_permission_id_1fbb5f2c")
+  @@index([user_id], map: "auth_user_user_permissions_user_id_a95ead1b")
+}
+
+model authtoken_token {
+  key       String    @id(map: "PK__authtoke__DFD83CAE228D2E07") @db.NVarChar(40)
+  created   DateTime  @db.DateTimeOffset
+  user_id   Int       @unique(map: "UQ__authtoke__B9BE370EEB6C1A8A")
+  auth_user auth_user @relation(fields: [user_id], references: [id], onUpdate: NoAction, map: "authtoken_token_user_id_35299eff_fk_auth_user_id")
+}
+
+model django_admin_log {
+  id                  Int                  @id(map: "PK__django_a__3213E83F19DB03A5") @default(autoincrement())
+  action_time         DateTime             @db.DateTimeOffset
+  object_id           String?              @db.NVarChar(Max)
+  object_repr         String               @db.NVarChar(200)
+  action_flag         Int                  @db.SmallInt
+  change_message      String               @db.NVarChar(Max)
+  content_type_id     Int?
+  user_id             Int
+  django_content_type django_content_type? @relation(fields: [content_type_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "django_admin_log_content_type_id_c4bce8eb_fk_django_content_type_id")
+  auth_user           auth_user            @relation(fields: [user_id], references: [id], onUpdate: NoAction, map: "django_admin_log_user_id_c564eba6_fk_auth_user_id")
+
+  @@index([content_type_id], map: "django_admin_log_content_type_id_c4bce8eb")
+  @@index([user_id], map: "django_admin_log_user_id_c564eba6")
+}
+
+model django_content_type {
+  id               Int                @id(map: "PK__django_c__3213E83F9DD0DEC5") @default(autoincrement())
+  app_label        String             @db.NVarChar(100)
+  model            String             @db.NVarChar(100)
+  auth_permission  auth_permission[]
+  django_admin_log django_admin_log[]
+}
+
+model django_migrations {
+  id      BigInt   @id(map: "PK__django_m__3213E83F548190A5") @default(autoincrement())
+  app     String   @db.NVarChar(255)
+  name    String   @db.NVarChar(255)
+  applied DateTime @db.DateTimeOffset
+}
+
+model django_session {
+  session_key  String   @id(map: "PK__django_s__B3BA0F1FF9AC53FE") @db.NVarChar(40)
+  session_data String   @db.NVarChar(Max)
+  expire_date  DateTime @db.DateTimeOffset
+
+  @@index([expire_date], map: "django_session_expire_date_a5c62663")
+}
+
+model Schools {
+  id       Int        @id(map: "PK__Schools__3213E83FBAF37205") @default(autoincrement())
+  name     String     @db.VarChar(255)
+  ownerId  Int?
+  Users    Users?     @relation(fields: [ownerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK__Schools__ownerId__075714DC")
+  Students Students[]
+}
+
+model Students {
+  id       Int      @id(map: "PK__Students__3213E83F02B88F59") @default(autoincrement())
+  name     String   @db.VarChar(255)
+  age      Int?
+  email    String?  @unique(map: "UQ__Students__AB6E6164714D6564") @db.VarChar(255)
+  phone    String?  @db.VarChar(255)
+  schoolId Int?
+  Schools  Schools? @relation(fields: [schoolId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK__Students__school__0B27A5C0")
+}
+
+model Users {
+  id       Int       @id(map: "PK__Users__3213E83F741580AA") @default(autoincrement())
+  email    String?   @unique(map: "UQ__Users__AB6E6164BA555F43") @db.VarChar(255)
+  password String    @db.VarChar(255)
+  Schools  Schools[]
+}
