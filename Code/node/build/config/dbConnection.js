@@ -64,6 +64,15 @@ var sql = require('msnodesqlv8');
 dotenv.config();
 var connectionString = process.env.DB_CONNECTION_STRING;
 console.log(connectionString);
+// test connection
+sql.query(connectionString, 'SELECT 1', function (err, rows) {
+    if (err) {
+        console.error(err);
+    }
+    else {
+        console.log(rows);
+    }
+});
 function query(query, params) {
     if (params === void 0) { params = []; }
     return __awaiter(this, void 0, void 0, function () {
