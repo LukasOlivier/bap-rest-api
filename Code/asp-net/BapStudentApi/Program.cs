@@ -1,18 +1,12 @@
 ﻿using BapStudentApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.Data.Common;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using System.Text;
-using BapStudentApi.Controllers;
-using static System.Net.WebRequestMethods;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
@@ -30,8 +24,7 @@ builder.Services.AddAuthentication(options =>
     {
         ValidIssuer = "http://localhost:3000",
         ValidAudience = "http://localhost:3000",
-        IssuerSigningKey = new SymmetricSecurityKey
-        (Encoding.UTF8.GetBytes("ThisIsASuperLongKeyThatYouShouldChange")),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ThisIsASuperLongKeyThatYouShouldChange")),
         ValidateIssuer = true,
         ValidateAudience = true,
         ValidateLifetime = false,
@@ -39,15 +32,8 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-// Add swagger
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new() { Title = "BapStudentApi", Version = "v1" });
-});
-
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();

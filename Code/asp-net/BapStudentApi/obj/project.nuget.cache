@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "/uFtqGSrx+Giti7wDPnemyh8mcUL63Xqd1VMBergkoBeIj+kwvaz98jHE1pEIyWCaIxM2+rZch1+qcNFianYkQ==",
+  "dgSpecHash": "wU/Ctf35foE6QRV5n4zOrFiw9wFcadB/Z56EhlCxdvf6XTFTaPNpTwPiMrznN/wFZzR6tu5l85iWdY6l1+SQVw==",
   "success": true,
   "projectFilePath": "C:\\Users\\lol\\Desktop\\Howest\\BAP\\code\\asp-net\\BapStudentApi\\BapStudentApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lol\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\lol\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
+    "C:\\Users\\lol\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
     "C:\\Users\\lol\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\lol\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\lol\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",

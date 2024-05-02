@@ -258,6 +258,14 @@ C:\Users\lol\source\repos\BapStudentApi\BapStudentApi\bin\Debug\net8.0\runtimes\
 C:\Users\lol\source\repos\BapStudentApi\BapStudentApi\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 C:\Users\lol\source\repos\BapStudentApi\BapStudentApi\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\lol\source\repos\BapStudentApi\BapStudentApi\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\obj\Debug\net8.0\BapStudentApi.csproj.AssemblyReference.cache
+C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\obj\Debug\net8.0\BapStudentApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\obj\Debug\net8.0\BapStudentApi.AssemblyInfoInputs.cache
+C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\obj\Debug\net8.0\BapStudentApi.AssemblyInfo.cs
+C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\obj\Debug\net8.0\BapStudentApi.csproj.CoreCompileInputs.cache
+C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\obj\Debug\net8.0\BapStudentApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\obj\Debug\net8.0\BapStudentApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\obj\Debug\net8.0\BapStudentApi.sourcelink.json
 C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\bin\Debug\net8.0\appsettings.json
 C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\bin\Debug\net8.0\BapStudentApi.exe
@@ -267,6 +275,7 @@ C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\bin\Debug\net8.0\BapS
 C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\bin\Debug\net8.0\BapStudentApi.pdb
 C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\bin\Debug\net8.0\Azure.Identity.dll
+C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\bin\Debug\net8.0\FluentValidation.dll
 C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\bin\Debug\net8.0\Humanizer.dll
 C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
@@ -497,14 +506,6 @@ C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\bin\Debug\net8.0\runt
 C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
-C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\obj\Debug\net8.0\BapStudentApi.csproj.AssemblyReference.cache
-C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\obj\Debug\net8.0\BapStudentApi.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\obj\Debug\net8.0\BapStudentApi.AssemblyInfoInputs.cache
-C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\obj\Debug\net8.0\BapStudentApi.AssemblyInfo.cs
-C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\obj\Debug\net8.0\BapStudentApi.csproj.CoreCompileInputs.cache
-C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\obj\Debug\net8.0\BapStudentApi.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\obj\Debug\net8.0\BapStudentApi.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\obj\Debug\net8.0\BapStudentApi.sourcelink.json
 C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\lol\Desktop\Howest\BAP\code\asp-net\BapStudentApi\obj\Debug\net8.0\staticwebassets\msbuild.BapStudentApi.Microsoft.AspNetCore.StaticWebAssets.props

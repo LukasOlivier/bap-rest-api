@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using BapStudentApi.Models;
 
 namespace BapStudentApi.Models
 {
